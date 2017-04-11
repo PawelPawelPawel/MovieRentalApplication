@@ -408,7 +408,7 @@ public class ApplicationView extends JFrame implements ActionListener {
 				JScrollPane pane = new JScrollPane(table);
 				jPanel.add(pane);
 				jPanel.revalidate();
-				jPanel.repaint();
+				jPanel.repaint();				
 
 			} catch (NumberFormatException n) {
 				JOptionPane.showMessageDialog(this, "Runtime and copies must be integer", "ERROR!!!",
