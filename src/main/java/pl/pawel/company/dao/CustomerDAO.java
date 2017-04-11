@@ -58,13 +58,13 @@ public class CustomerDAO {
 		return null;
 	}
 
-	public void addCustomer(String name, String lastname, int phone) {
+	public void addCustomer(String name, String lastname, int phone) throws SQLException {
 
 		String sql = "INSERT INTO Customer (name, lastName, phone) VALUES ('" + name + "', '" + lastname + "'," + phone
 				+ ")";
-
 		try {
 			stat.executeUpdate(sql);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

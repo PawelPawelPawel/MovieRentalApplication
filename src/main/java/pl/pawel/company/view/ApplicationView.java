@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Collection;
 
@@ -302,24 +303,57 @@ public class ApplicationView extends JFrame implements ActionListener {
 
 			JAccept.setVisible(false);
 
+		}
+		if (radioButtonMovies.isSelected() && source == JAdd) {
+			textTitle.setVisible(true);
+			textRuntime.setVisible(true);
+			textCopies.setVisible(true);
+
+			textTitle.setText("title");
+			textRuntime.setText("runtime");
+			textCopies.setText("copies");
+
+			JAccept.setVisible(true);
+		}
+
+		if (radioButtonCustomers.isSelected() && source == JAdd) {
+			textTitle.setVisible(true);
+			textRuntime.setVisible(true);
+			textCopies.setVisible(true);
+
+			textTitle.setText("name");
+			textRuntime.setText("lastName");
+			textCopies.setText("phone");
+
+			JAccept.setVisible(true);
+		}
+
+		if (radioButtonOrders.isSelected() && source == JAdd) {
+			textTitle.setVisible(false);
+			textRuntime.setVisible(false);
+			textCopies.setVisible(false);
+
+			JAccept.setVisible(true);
+
 			customers = new JComboBox<Customer>();
-			customers.setBounds(900, 250, 300, 20);
+			customers.setBounds(720, 150, 180, 20);
 			add(customers);
 			for (Customer customer : customerDAO.getCustomers()) {
 				customers.addItem(customer);
 			}
 
 			movies = new JComboBox<Movie>();
-			movies.setBounds(900, 450, 300, 20);
+			movies.setBounds(900, 150, 180, 20);
 			add(movies);
 
 			Collection<Movie> moviesCollection = movieDAO.getMovies();
+
 			for (Movie movie : moviesCollection) {
 				movies.addItem(movie);
 			}
 
 			copies = new JComboBox<Integer>();
-			copies.setBounds(900, 550, 300, 20);
+			copies.setBounds(1080, 150, 80, 20);
 			add(copies);
 
 			if (!moviesCollection.isEmpty()) {
@@ -352,38 +386,6 @@ public class ApplicationView extends JFrame implements ActionListener {
 					}
 				}
 			});
-
-		}
-		if (radioButtonMovies.isSelected() && source == JAdd) {
-			textTitle.setVisible(true);
-			textRuntime.setVisible(true);
-			textCopies.setVisible(true);
-
-			textTitle.setText("title");
-			textRuntime.setText("runtime");
-			textCopies.setText("copies");
-
-			JAccept.setVisible(true);
-		}
-
-		if (radioButtonCustomers.isSelected() && source == JAdd) {
-			textTitle.setVisible(true);
-			textRuntime.setVisible(true);
-			textCopies.setVisible(true);
-
-			textTitle.setText("name");
-			textRuntime.setText("lastName");
-			textCopies.setText("phone");
-
-			JAccept.setVisible(true);
-		}
-
-		if (radioButtonOrders.isSelected() && source == JAdd) {
-			textTitle.setVisible(false);
-			textRuntime.setVisible(false);
-			textCopies.setVisible(false);
-
-			JAccept.setVisible(true);
 		}
 
 		if (radioButtonMovies.isSelected() && source == JAccept) {
@@ -413,11 +415,16 @@ public class ApplicationView extends JFrame implements ActionListener {
 			}
 		}
 		if (radioButtonCustomers.isSelected() && source == JAccept) {
+
 			try {
-				customerDAO.addCustomer(textTitle.getText(), textRuntime.getText(),
-						Integer.parseInt(textCopies.getText()));
-				JOptionPane.showMessageDialog(this, " You added a customer", "Done :)",
-						JOptionPane.INFORMATION_MESSAGE);
+				try {
+					customerDAO.addCustomer(textTitle.getText(), textRuntime.getText(),Integer.parseInt(textCopies.getText()));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				JOptionPane.showMessageDialog(this, " You added a customer", "Done :)",JOptionPane.INFORMATION_MESSAGE);
 
 				Customer newCustomer = customerDAO.getLastCustomers();
 				Object[] rowData = new Object[4];
@@ -466,8 +473,7 @@ public class ApplicationView extends JFrame implements ActionListener {
 				jPanel3.revalidate();
 				jPanel3.repaint();
 
-				JOptionPane.showMessageDialog(this, " You ordered the movie", "Done :)",
-						JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, " You ordered the movie", "Done :)",JOptionPane.INFORMATION_MESSAGE);
 			} catch (Exception n) {
 				JOptionPane.showMessageDialog(this, "You have to contact with administrator", "ERROR!!!",
 						JOptionPane.WARNING_MESSAGE);
