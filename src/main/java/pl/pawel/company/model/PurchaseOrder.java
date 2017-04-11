@@ -1,7 +1,5 @@
 package pl.pawel.company.model;
 
-import java.util.Date;
-
 public class PurchaseOrder {
 
 	private int id;
