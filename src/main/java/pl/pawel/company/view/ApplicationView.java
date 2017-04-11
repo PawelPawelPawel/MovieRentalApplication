@@ -1,17 +1,10 @@
 package pl.pawel.company.view;
 
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
 
 import javax.swing.ButtonGroup;
@@ -25,8 +18,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
 import pl.pawel.company.dao.CustomerDAO;
@@ -39,7 +30,7 @@ import pl.pawel.company.service.OrderSericeImpl;
 import pl.pawel.company.service.OrderService;
 
 public class ApplicationView extends JFrame implements ActionListener {
-
+	private static final long serialVersionUID = -5985086731899474964L;
 	private JLabel JTitle;
 	private JButton JAdd, JAccept;
 	private JTextField textTitle, textRuntime, textCopies;
@@ -408,7 +399,7 @@ public class ApplicationView extends JFrame implements ActionListener {
 				JScrollPane pane = new JScrollPane(table);
 				jPanel.add(pane);
 				jPanel.revalidate();
-				jPanel.repaint();				
+				jPanel.repaint();
 
 			} catch (NumberFormatException n) {
 				JOptionPane.showMessageDialog(this, "Runtime and copies must be integer", "ERROR!!!",
