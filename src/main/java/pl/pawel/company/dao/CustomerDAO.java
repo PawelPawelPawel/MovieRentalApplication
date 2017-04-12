@@ -1,6 +1,7 @@
 package pl.pawel.company.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,6 +24,7 @@ public class CustomerDAO {
 	public Collection<Customer> getCustomers() {
 		Collection<Customer> customers = new LinkedList<Customer>();
 		try {
+
 			ResultSet result = stat.executeQuery("SELECT * FROM " + Customer.class.getSimpleName());
 			while (result.next()) {
 				Customer customer = new Customer();

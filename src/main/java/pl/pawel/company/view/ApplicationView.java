@@ -389,9 +389,8 @@ public class ApplicationView extends JFrame implements ActionListener {
 		}
 
 		if (radioButtonMovies.isSelected() && source == JAccept) {
-			try {
-				movieDAO.addMovie(textTitle.getText(), Integer.parseInt(textRuntime.getText()),
-						Integer.parseInt(textCopies.getText()));
+			try {			
+				movieDAO.addMovie(textTitle.getText(), Integer.parseInt(textRuntime.getText()),Integer.parseInt(textCopies.getText()));
 
 				JOptionPane.showMessageDialog(this, " You added a movie", "Done :)", JOptionPane.INFORMATION_MESSAGE);
 

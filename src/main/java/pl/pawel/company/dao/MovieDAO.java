@@ -12,7 +12,7 @@ import pl.pawel.company.model.Movie;
 public class MovieDAO {
 
 	private final Connection conn;
-	private final Statement stat;
+	private final Statement stat;	
 
 	public MovieDAO() {
 		DAOConector connector = new DAOConector();
@@ -108,8 +108,8 @@ public class MovieDAO {
 
 	}
 
-	public void addMovie(String tittle, int runetime, int copies) {
-
+	public void addMovie(String tittle, int runetime, int copies){
+	
 		String sql = "INSERT INTO Movie (tittle, runetime, copies) VALUES ('" + tittle + "', " + runetime + "," + copies
 				+ ")";
 
@@ -120,6 +120,8 @@ public class MovieDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+
 	}
 
 	public void closeConnection() {
@@ -128,6 +130,6 @@ public class MovieDAO {
 		} catch (SQLException e) {
 			System.err.println("Problem z zamknieciem polaczenia");
 			e.printStackTrace();
-		}
+		}		
 	}
 }
